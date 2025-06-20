@@ -43,13 +43,13 @@ if st.button("Check"):
             pred_labels = torch.sigmoid(pred)
             prob=torch.round(pred_labels)
             st.subheader("Prediction:")
-            st.write(f"Raw Prediction Value: {pred.item():.4f}")
+            # st.write(f"Raw Prediction Value: {pred.item():.4f}")
             st.write(f"Confidence (sigmoid): {torch.sigmoid(pred).item()}%")
-            st.write(f"Prediction Value: {prob.item():.4f}")
+            # st.write(f"Prediction Value: {prob.item():.4f}")
 
             if pred_labels.item() < 0.3:
-                st.error("❌ Fake News")
+                st.error(f"{pred_labels}% Fake News")
             elif 0.3 < pred_labels < 0.7 :
-                st.success(f"Maybe, {pred_labels}")
+                st.success(f"Maybe, {pred_labels}%")
             else:
-                st.success("✅ Real News")
+                st.success(f"{pred_labels}% Real News")
