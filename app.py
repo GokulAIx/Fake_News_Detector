@@ -48,8 +48,8 @@ if st.button("Check"):
             # st.write(f"Prediction Value: {prob.item():.4f}")
 
             if pred_labels.item() < 0.3:
-                st.error(f"{pred_labels.item()}% Fake News")
+                st.error(f"{pred_labels.item()*100 :.2f}% Fake News")
             elif 0.3 < pred_labels < 0.7 :
-                st.success(f"Maybe, {pred_labels.item()}%")
+                st.success(f"Maybe, {pred_labels.item()*100 :.2f}%")
             else:
-                st.success(f"{pred_labels.item()}% Real News")
+                st.success(f"{pred_labels.item()*100 :.2f}% Real News")
