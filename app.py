@@ -3,6 +3,12 @@ import torch
 import torch.nn as nn
 from sentence_transformers import SentenceTransformer
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
+
+import torch
+print("CUDA available:", torch.cuda.is_available())  # should print False
+
 # Define the model
 class News(nn.Module):
     def __init__(self):
@@ -24,7 +30,8 @@ modell2.load_state_dict(torch.load("Fake_News_Detection.pth", map_location=torch
 modell2.eval()
 
 # Load sentence transformer
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("all-MiniLM-L6-v2", device='cpu')
+
 
 # Streamlit UI
 st.title("📰 Fake News Detector")
